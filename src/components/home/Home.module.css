@@ -4,3 +4,9 @@
     gap: 20px;
     margin: auto;
 }
+
+.fields{
+    line-height: 0.3;
+    display: flex;
+    justify-content: space-between;
+}

@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-// import Post from './components/post/Post';
+import Post from './components/post/Post';
 import Home from './components/home/Home';
 import NavBar from './components/navbar/NavBar';
 import { Divider, Row } from 'antd';
@@ -17,6 +17,7 @@ const App = () => {
         <Routes>
           <Route  path="/" element={<SearchHotel />} />
           <Route  path="/search" element={<Home />} /> 
+          <Route path="/hotel/:id" element={<Post />} />
         </Routes>
       </BrowserRouter>
 

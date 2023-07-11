@@ -2,6 +2,7 @@ import { Avatar, Button, Card, Col, Row } from "antd";
 import Meta from "antd/es/card/Meta";
 
 import Styles from './Home.module.css'
+import { Link, useNavigate } from "react-router-dom";
 
 const data = [
     {
@@ -109,9 +110,11 @@ const data = [
 
 const Home = () => {
 
+    const navigate = useNavigate();
 
-    const onSearch = (id) => {
-        console.log('search', id)
+    const onSearch = (hotel) => {
+        console.log('search', hotel)
+        navigate(`/hotel/${hotel.id}`, {state: hotel})
     }
 
     return (
@@ -120,9 +123,10 @@ const Home = () => {
                 {
                     data.map(hotel => {
                         return (
+                            
                             <Col key={hotel.id}>
                                 <Card
-                                    style={{ width: 300 }}
+                                    style={{ width: 300, height: '450px' }}
                                     cover={
                                         <img
                                             alt="hotel image"
@@ -130,22 +134,34 @@ const Home = () => {
                                             height={'200px'}
                                             src={hotel.image}
                                         />}>
-                                    <Meta
-                                        avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
-                                        title={hotel.name}
-                                        description={hotel.shortDesc}
-                                    />
+                                        <Meta
+                                            style={{ height: '80px' }}
+                                            avatar={<Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel" />}
+                                            title={hotel.name}
+                                            description={hotel.shortDesc}
+                                        />
                                     <div className="additional">
-                                        <p>Price: {hotel.price} Rs</p>
-                                        <p>Experience Level: {hotel.experience}</p>
-                                        <p className="pool">Pool: {hotel.pool ? 'yes' : 'No'}</p>
+                                        <div className={Styles.fields}>
+                                            <p>Price:</p>
+                                            <p>{hotel.price}</p>
+                                        </div>
+
+                                        <div className={Styles.fields}>
+                                            <p>Pool:</p>
+                                            <p>{hotel.pool ? 'yes' : 'No'}</p>
+                                        </div>
+
+                                        <div className={Styles.fields}>
+                                            <p>Experience Level:</p>
+                                            <p>{hotel.experience}</p>
+                                        </div>
                                     </div>
-                                    <Button type="primary" onClick={() => onSearch(hotel.id)}>
-                                        Search
+                                    <Button style={{ marginTop: '10px' }} type="primary" onClick={()=>onSearch(hotel)}>
+                                        Book now
                                     </Button>
                                 </Card>
                             </Col>
-                        );
+                       );
                     })
                 }
             </Row>
