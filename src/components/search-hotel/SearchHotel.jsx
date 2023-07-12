@@ -42,16 +42,22 @@ const SearchHotel = () => {
 
             <Form onFinish={onFinish}>
 
-                <Item label={'Select City:'} name={'city'} rules={[{ required: true, message: 'Please select your city!' }]} >
+                <Item data-testid='city' label={'Select City:'} name={'city'} rules={[{ required: true, message: 'Please select your city!' }]} >
                     <Select
+                    aria-label="cities"
                         className={Styles.select}
                         onChange={handleChange}
-                        options={city}
+                        options={[
+                            {label: 'Karachi', value: 'karachi' },
+                            {label: 'Islamabad', value: 'islamabad'} ,
+                            {label: 'Lahore', value: 'lahore'},
+                        ]}
                     />
                 </Item>
                 
-                <Item label={'Experience Level:'} name={'experience'} rules={[{ required: true, message: 'Please select your Experience!' }]} >
+                <Item data-testid='exp' label={'Experience Level:'} name={'experience'} rules={[{ required: true, message: 'Please select your Experience!' }]} >
                     <Select
+                        
                         className={Styles.select}
                         onChange={handleChange}
                         options={experience}
@@ -64,7 +70,7 @@ const SearchHotel = () => {
                 </Item>
 
                 <Item wrapperCol={{ span: 16 }}>
-                    <Button type="primary" htmlType="submit">
+                    <Button data-testid='btn' type="primary" htmlType="submit">
                         Search
                     </Button>
                 </Item>
